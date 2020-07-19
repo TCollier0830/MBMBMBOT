@@ -73,10 +73,18 @@ class Scrawl:
 
         return
 
+def SafeMake(folder):
+    try:
+        os.makedirs(folder)
+    except Exception:
+        pass
+    return
+
+
 def TextIt():
     Brothers = os.path.join(os.getcwd(), "Brothers")
     TextFiles = os.path.join(os.getcwd(), "TextFiles")
-    os.makedirs(TextFiles)
+    os.SafeMake(TextFiles)
     for file in os.listdir(Brothers):
         oFile = open(os.path.join(TextFiles, file.replace("pdf","txt")), "w+", encoding="utf-8")
         #raw = parser.from_file(os.path.join(Brothers,file))
@@ -98,7 +106,7 @@ def TextIt():
 def TextIt2():
     Brothers = os.path.join(os.getcwd(), "Brothers")
     TextFiles = os.path.join(os.getcwd(), "TextFiles")
-    os.makedirs(TextFiles)
+    os.SafeMake(TextFiles)
     for file in os.listdir(Brothers):
         oFile = open(os.path.join(TextFiles, file.replace("pdf","txt")), "w+", encoding="utf-8")
         iFile = open(os.path.join(Brothers, file), "rb")
